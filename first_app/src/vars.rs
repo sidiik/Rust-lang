@@ -6,7 +6,7 @@ pub fn run() {
 
     // Defining constant
 
-    const ID: i64 = 001;
+    const ID: i32 = 001;
 
     println!("{}", ID);
 
