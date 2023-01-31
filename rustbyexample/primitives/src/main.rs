@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 fn main() {
     // // variables can be type annotated
     // let logical: bool = true;
@@ -43,7 +45,7 @@ fn main() {
         new_nums[i] = element * 2;
     }
 
-    println!("{:?}", new_nums)
+    println!("{:?}", new_nums);
 }
 
 fn analyze_slice(slice: &[i32]) {
