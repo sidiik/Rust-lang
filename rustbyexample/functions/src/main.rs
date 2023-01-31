@@ -10,9 +10,10 @@ fn main() {
 
     // println!("{} ", _say_hello(&mut name))
 
-    // let multiply_by_2 = |x: f32| x * 2.0;
+    let multiply_by_2 = |x: f32| x * 2.0;
+    let ptr = multiply_by_2;
 
-    // let y = 8f32;
+    let y = 8f32;
 
-    // println!("4 * 2 = {}", multiply_by_2(y));
+    println!("4 * 2 = {}", ptr(y));
 }
