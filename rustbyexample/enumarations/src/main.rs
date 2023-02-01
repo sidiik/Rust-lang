@@ -8,8 +8,14 @@ enum AnimalType {
 
 #[warn(dead_code)]
 
+struct Size {
+    width: f32,
+    height: f32,
+}
+
 enum Shapes {
     Regtangle { width: f64, height: f64 },
+    Square(f32, f32, Size),
 }
 
 fn main() {
@@ -31,5 +37,22 @@ fn main() {
             println!("width  {} * height {} = {}", width, height, width * height)
         }
         _ => println!("Not a rectange"),
+    }
+
+    let square = Shapes::Square(
+        3.2,
+        4.5,
+        Size {
+            width: 4.5,
+            height: 32.2,
+        },
+    );
+
+    match square {
+        Shapes::Square(x, y, Size { width, height }) => {
+            println!("x {}, y {}, width {}, height {}", x, y, width, height)
+        }
+
+        _ => println!("This is not square"),
     }
 }
