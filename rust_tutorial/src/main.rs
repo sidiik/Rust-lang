@@ -23,18 +23,45 @@
 //     }
 // }
 
-#[derive(Debug)]
-struct Point {
-    x: i64,
-    y: i64,
+// #[derive(Debug)]
+// struct Point {
+//     x: i64,
+//     y: i64,
+// }
+// fn main() {
+//     let values = new_points(&45, &23);
+
+//     let Point { y, .. } = values;
+//     println!("{}", y)
+// }
+
+// fn new_points(x: &i64, y: &i64) -> Point {
+//     Point { x: *x, y: *y }
+// }
+
+struct City {
+    residents: i64,
+    description: String,
+    is_coastal: bool,
 }
 fn main() {
-    let values = new_points(&45, &23);
+    let rustville = new_city(123, false);
 
-    let Point { x, y } = values;
-    println!("{} {}", x, y)
+    println!("{}", rustville.description)
 }
 
-fn new_points(x: &i64, y: &i64) -> Point {
-    Point { x: *x, y: *y }
+fn new_city(residents: i64, is_coastal: bool) -> City {
+    if is_coastal {
+        City {
+            description: format!("This is coastal city with {} residents", residents),
+            residents,
+            is_coastal,
+        }
+    } else {
+        City {
+            description: format!("This is non-coastal city with {} residents", residents),
+            residents,
+            is_coastal,
+        }
+    }
 }
