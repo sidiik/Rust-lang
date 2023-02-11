@@ -39,15 +39,85 @@
 //     Point { x: *x, y: *y }
 // }
 
+#[derive(Debug)]
 struct City {
     residents: i64,
     description: String,
     is_coastal: bool,
 }
+
+enum Colors {
+    Red,
+    Green,
+    Custom(u8, u8, u8),
+}
+
+enum CitySize {
+    Town,
+    City,
+    Metrapolis,
+    Area { residents: i64 },
+}
+
+impl City {
+    fn new(city_size: CitySize, is_coastal: bool) -> City {
+        let (description, residents) = match city_size {
+            CitySize::Town => {
+                let residents = 10_000;
+                (
+                    format!("A town of approximately {} residents", residents),
+                    residents,
+                )
+            }
+
+            CitySize::City => {
+                let residents = 1_000_000;
+                (
+                    format!("A city of approximately {} residents", residents),
+                    residents,
+                )
+            }
+
+            CitySize::Metrapolis => {
+                let residents = 1_000;
+                (
+                    format!("A metrapolis of approximately {} residents", residents),
+                    residents,
+                )
+            }
+
+            CitySize::Area { residents } => (
+                format!("A area of approximately {} residents", residents),
+                residents,
+            ),
+        };
+
+        City {
+            description,
+            is_coastal,
+            residents,
+        }
+    }
+}
+
 fn main() {
     let rustville = new_city(123, false);
 
-    println!("{}", rustville.description)
+    let current_clr = Colors::Red;
+
+    let color_str = match current_clr {
+        Colors::Red => println!("it was a red"),
+        Colors::Green => println!("it was green"),
+        _ => println!("it was something else"),
+    };
+
+    let mut email_str = "sidiikpro@gmail.com".to_string();
+
+    let last_char = &email_str.pop();
+
+    let hargeisa = City::new(CitySize::Area { residents: 5 }, false);
+
+    println!("{:?}", hargeisa)
 }
 
 fn new_city(residents: i64, is_coastal: bool) -> City {
