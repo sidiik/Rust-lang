@@ -39,6 +39,8 @@
 //     Point { x: *x, y: *y }
 // }
 
+use std::alloc::{dealloc, GlobalAlloc, Layout};
+
 #[derive(Debug)]
 struct City {
     residents: i64,
@@ -101,23 +103,56 @@ impl City {
 }
 
 fn main() {
-    let rustville = new_city(123, false);
+    // let rustville = new_city(123, false);
 
-    let current_clr = Colors::Red;
+    // let current_clr = Colors::Red;
 
-    let color_str = match current_clr {
-        Colors::Red => println!("it was a red"),
-        Colors::Green => println!("it was green"),
-        _ => println!("it was something else"),
-    };
+    // let color_str = match current_clr {
+    //     Colors::Red => println!("it was a red"),
+    //     Colors::Green => println!("it was green"),
+    //     _ => println!("it was something else"),
+    // };
 
-    let mut email_str = "sidiikpro@gmail.com".to_string();
+    // let mut email_str = "sidiikpro@gmail.com".to_string();
 
-    let last_char = &email_str.pop();
+    // let last_char = &email_str.pop();
 
-    let hargeisa = City::new(CitySize::Area { residents: 5 }, false);
+    // let hargeisa = City::new(CitySize::Area { residents: 5 }, false);
 
-    println!("{:?}", hargeisa)
+    // println!("{:?}", hargeisa)
+
+    // let mut city_names = vec!["Hargeisa", "burao", "Erigavo", "Rustville"];
+
+    // let last_city = match city_names.pop() {
+    //     Some(inner_value) => inner_value,
+    //     None => "",
+    // };
+
+    // if last_city.starts_with("R") {
+    //     println!("{} starts with R", last_city)
+    // } else {
+    //     println!("{} does not start with R", last_city)
+    // }
+
+    // city_names.push(last_city);
+
+    // for city in city_names.iter() {
+    //     println!("* {city}")
+    // }
+
+    // let orders = vec![1, 2, 3, 4];
+
+    let nums = vec![10, 23, 4, 5, 3, 4, 6, 2, 4, 43, 8];
+
+    let sum_of_nums = sum(nums.clone());
+    let product_of_nums = product(nums.clone());
+    let average = average(nums);
+
+    //
+
+    println!("Sum of numbers is {sum_of_nums}");
+    println!("Product of numbers is {product_of_nums}");
+    println!("Average of numbers is {average}");
 }
 
 fn new_city(residents: i64, is_coastal: bool) -> City {
@@ -134,4 +169,30 @@ fn new_city(residents: i64, is_coastal: bool) -> City {
             is_coastal,
         }
     }
+}
+
+fn product(nums: Vec<i32>) -> i32 {
+    let mut total = 1;
+
+    for num in nums.iter() {
+        total *= num;
+    }
+
+    total
+}
+
+fn sum(nums: Vec<i32>) -> i32 {
+    let mut total = 1;
+
+    for num in nums.iter() {
+        total += num;
+    }
+
+    total
+}
+
+fn average(nums: Vec<i32>) -> i32 {
+    let length = nums.len() as i32;
+
+    sum(nums) / length
 }
