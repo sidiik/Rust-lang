@@ -151,7 +151,7 @@ fn main() {
     //
 
     println!("Sum of numbers is {sum_of_nums}");
-    println!("Product of numbers is {product_of_nums}");
+    println!("Product of numbers is {}", product_of_nums.0);
     println!("Average of numbers is {average}");
 }
 
@@ -171,14 +171,14 @@ fn new_city(residents: i64, is_coastal: bool) -> City {
     }
 }
 
-fn product(nums: Vec<i32>) -> i32 {
+fn product(nums: Vec<i32>) -> (i32, Vec<i32>) {
     let mut total = 1;
 
     for num in nums.iter() {
         total *= num;
     }
 
-    total
+    (total, nums)
 }
 
 fn sum(nums: Vec<i32>) -> i32 {
